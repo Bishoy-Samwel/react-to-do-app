@@ -2,6 +2,13 @@ import React from "react"
 import styles from "./TodoItem.module.css"
 
 function TodoItem(props) {
+  const completedStyle = {
+    fontStyle: "italic",
+    color: "#595959",
+    opacity: 0.4,
+    textDecoration: "line-through",
+  }
+  
   return (
     <li className={styles.item}>
       <input
@@ -13,7 +20,9 @@ function TodoItem(props) {
       <button onClick={() => this.props.deleteTodoProps(this.props.todo.id)}>
         Delete
       </button>
-      {this.props.todo.title}
+      <span style={this.props.todo.completed ? completedStyle : null}>
+        {this.props.todo.title}
+      </span>
     </li>
   )
 }

@@ -5,8 +5,8 @@ import InputTodo from "./InputTodo"
 import { v4 as uuidv4 } from "uuid";
 
 class TodoContainer extends React.Component {
-  state = {
-    todos: [
+  state =  {
+    todos: JSON.parse(localStorage.getItem("todos")) || [
       {
         id: uuidv4(),
         title: "Setup development environment",
@@ -39,6 +39,7 @@ class TodoContainer extends React.Component {
         }),
       }
     })
+    localStorage.setItem("todos", JSON.stringify(this.state.todos))
   };
 
   delTodo = id => {
@@ -49,6 +50,8 @@ class TodoContainer extends React.Component {
         })
       ]
     });
+    console.log(this.state.todos);
+    localStorage.setItem("todos", JSON.stringify(this.state.todos))
   };
 
   addTodoItem = title => {
@@ -60,6 +63,7 @@ class TodoContainer extends React.Component {
     this.setState({
       todos: [...this.state.todos, newTodo]
     });
+    localStorage.setItem("todos", JSON.stringify(this.state.todos))
   };
 
   setUpdate = (updatedTitle, id) => {
@@ -71,6 +75,7 @@ class TodoContainer extends React.Component {
         return todo
       }),
     })
+    localStorage.setItem("todos", JSON.stringify(this.state.todos))
   }
 
   render() {

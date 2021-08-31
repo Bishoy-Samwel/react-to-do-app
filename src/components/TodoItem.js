@@ -10,6 +10,7 @@ class TodoItem extends React.Component {
       editing: true,
     })
   }
+
   render() {
     const completedStyle = {
       fontStyle: "italic",
@@ -28,7 +29,7 @@ class TodoItem extends React.Component {
     }
     return (
       <li className={styles.item}>
-        <div onDoubleClick={this.handleEditing}  style={viewMode}>
+        <div onDoubleClick={this.handleEditing} style={viewMode}>
           <input
             type="checkbox"
             className={styles.checkbox}
@@ -38,7 +39,15 @@ class TodoItem extends React.Component {
           <button onClick={() => this.props.deleteTodoProps(id)}>Delete</button>
           <span style={completed ? completedStyle : null}>{title}</span>
         </div>
-        <input type="text" style={editMode} className={styles.textInput} />
+        <input
+          type="text"
+          style={editMode}
+          className={styles.textInput}
+          value={title}
+          onChange={e => {
+            this.props.setUpdate(e.target.value, id)
+          }}
+        />
       </li>
     )
   };

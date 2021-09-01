@@ -54,3 +54,8 @@
   color: orangered;
   text-decoration: underline;
 }
+
+.active-link {
+  color: orangered;
+  text-decoration: underline;
+}
